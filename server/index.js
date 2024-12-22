@@ -20,10 +20,7 @@ import router from "./routes/api.js";
 const app = express();
 
 // App use default middlewares
-app.use(cors({
-    origin: 'http://localhost:5173/', // Update to match your frontend's URL
-    credentials: true,
-}));
+app.use(cors());
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({ extended: URL_ENCODE}));
 app.use(cookieParser());
