@@ -9,11 +9,18 @@
     export const JWT_EXPIRE_TIME = 30*24*60*60
 
 
-    export const EMAIL_HOST = "md.atikur.rahman@bracu.ac.bd"
-    export const EMAIL_PORT = 25
+    // export const EMAIL_HOST = "md.atikur.rahman@bracu.ac.bd"
+    // export const EMAIL_PORT = 25
+    // export const EMAIL_SECURITY = false
+    // export const EMAIL_USER = "md.atikur.rahman@bracu.ac.bd"
+    // export const EMAIL_PASS = "fshi uais cthm jtot"
+    // export const EMAIL_UN_AUTH = false
+
+    export const EMAIL_HOST = "smtp.gmail.com"
+    export const EMAIL_PORT = 587
     export const EMAIL_SECURITY = false
-    export const EMAIL_USER = "md.atikur.rahman@bracu.ac.bd"
-    export const EMAIL_PASS = "fshi uais cthm jtot"
+    export const EMAIL_USER = "atikurrahmanjabed@gmail.com"
+    export const EMAIL_PASS = "rdgnyjqfrichonlf"
     export const EMAIL_UN_AUTH = false
 
 

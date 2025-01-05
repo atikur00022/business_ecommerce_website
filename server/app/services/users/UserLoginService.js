@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import {TokenEncode} from "../../utility/TokenUtility.js";
 import UsersModel from "../../models/users/UsersModel.js";
 
-
 const UserLoginService = async (req, res) => {
     try{
 
@@ -32,9 +31,10 @@ const UserLoginService = async (req, res) => {
 
                     res.cookie('Token', token, options);
 
-                    return{ status: 'success', message: 'Login completed successful!', data: token };
+                    return{ status: 'success', message: 'Login completed successful!' };
 
                 }else{
+                    res.clearCookie('Token');
                     return{ status: 'fail', message: 'You are not authorized to login! Please contact with authorities!' };
                 }
 

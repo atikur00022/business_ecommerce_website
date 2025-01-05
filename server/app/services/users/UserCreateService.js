@@ -17,7 +17,7 @@ const UserCreateService = async (req) =>{
 
             const data = await UsersModel.create(reqBody);
 
-            return{ status: 'success', message: 'Registration completed successfully', data: data };
+            return{ status: 'success', message: 'Registration completed successfully!' };
         }
 
     }catch (e) {

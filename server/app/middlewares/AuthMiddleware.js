@@ -1,8 +1,8 @@
-import {TokenDecode} from "../utility/TokenUtility";
+import {TokenDecode} from "../utility/TokenUtility.js";
 
 export default (req, res, next) => {
 
-    const token = req.headers["token"];
+    const token = req.cookies['Token'];
     const decoded = TokenDecode(token);
 
     if(decoded === null){
@@ -11,8 +11,12 @@ export default (req, res, next) => {
 
         const email = decoded.email;
         const user_id = decoded.user_id;
+        const isBanned = decoded.isBanned;
+        const role = decoded.role;
         req.headers.email = email;
         req.headers.user_id = user_id;
+        req.headers.isBanned = isBanned;
+        req.headers.role = role;
         next();
 
     }

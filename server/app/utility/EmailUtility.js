@@ -17,7 +17,7 @@ const SendEmail = async (EmailTo, EmailText, EmailSubject) => {
     });
 
     const mailOptions = {
-        from: "Tajir Super Shop <md.atikur.rahman@bracu.ac.bd>",
+        from: "Tajir Super Shop <atikurrahmanjabed@gmail.com>",
         to: EmailTo,
         subject: EmailSubject,
         text: EmailText,
