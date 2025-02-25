@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import MasterLayout from "../layouts/MasterLayout/MasterLayout.jsx";
+import LazLoader from "../layouts/loader/LazyLoader.jsx";
+
+const Home = lazy(() => import("../components/home/Home.jsx"));
 
 const HomePage = () => {
     return (
         <MasterLayout>
-            this is home page
+            <Suspense fallback={<LazLoader />}>
+                <Home/>
+            </Suspense>
         </MasterLayout>
     );
 };

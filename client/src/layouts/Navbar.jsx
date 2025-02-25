@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import logo from "../assets/images/plainb-logo.svg";
+import {getLoginStatus, getUserUrl} from "../utility/SessionHelper.js";
+import {LogoutRequest} from "../ApiRequest/Users/UsersApiRequest.js";
 
 const Navbar = () => {
+
+    const isLogin = Boolean(getLoginStatus());
+
     return (
         <section className="navbar py-2 mt-2">
             <div className="container">
@@ -32,12 +37,20 @@ const Navbar = () => {
                                 </span>
                                 <div className="account">
                                     <p className="">Account</p>
-                                    <Link to='/registration'>
-                                        <span className="register">Register</span>
-                                    </Link> | {" "}
-                                    <Link to='/login'>
-                                        <span className="login">Login</span>
-                                    </Link>
+                                    {isLogin === true ? (
+                                        <Link to={`/${getUserUrl()}`}>
+                                            <span className="register">Dashboard</span>
+                                        </Link>
+                                    ) : (
+                                        <>
+                                            <Link to='/registration'>
+                                                <span className="register">Register</span>
+                                            </Link> | {" "}
+                                            <Link to='/login'>
+                                                <span className="login">Login</span>
+                                            </Link>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

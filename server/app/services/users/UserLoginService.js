@@ -8,8 +8,7 @@ const UserLoginService = async (req, res) => {
         const { email, password } = req.body;
 
         const data = await UsersModel.aggregate([
-            { $match: { email } },
-            { $project: { _id:1, email:1, password:1, isBanned:1, role:1} },
+            { $match: { email } }
         ]);
 
         if(data.length > 0){
@@ -19,6 +18,15 @@ const UserLoginService = async (req, res) => {
             if(MatchingPassword){
 
                 if(data[0]['isBanned'] === false){
+
+                    const userDetails = {
+                        email: data[0]["email"],
+                        firstName: data[0]["firstName"],
+                        lastName: data[0]["lastName"],
+                        mobile: data[0]["mobile"],
+                        photo: data[0]["photo"],
+                        role: data[0]["role"],
+                    }
 
                     const token = await TokenEncode(data[0]['_id'],data[0]['email'],data[0]['isBanned'],data[0]['role']);
 
@@ -31,10 +39,9 @@ const UserLoginService = async (req, res) => {
 
                     res.cookie('Token', token, options);
 
-                    return{ status: 'success', message: 'Login completed successful!' };
+                    return{ status: 'success', message: 'Login completed successful!', data: userDetails };
 
                 }else{
-                    res.clearCookie('Token');
                     return{ status: 'fail', message: 'You are not authorized to login! Please contact with authorities!' };
                 }
 

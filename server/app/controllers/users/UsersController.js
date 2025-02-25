@@ -5,6 +5,7 @@ import {UserVerifyEmailService} from "../../services/users/UserVerifyEmailServic
 import {UserVerifyOtpService} from "../../services/users/UserVerifyOtpService.js";
 import {UserResetPassService} from "../../services/users/UserResetPassService.js";
 import {UserUpdateService} from "../../services/users/UserUpdateService.js";
+import UserLogoutService from "../../services/users/UserLogoutService.js";
 
 // Registration
 export const Registration = async (req, res) => {
@@ -15,6 +16,12 @@ export const Registration = async (req, res) => {
 // Login
 export const Login = async (req, res) => {
     const result = await UserLoginService(req, res);
+    res.json(result);
+}
+
+// Logout
+export const Logout = async (req, res) => {
+    const result = await UserLogoutService(req, res);
     res.json(result);
 }
 

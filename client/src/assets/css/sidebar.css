@@ -1,0 +1,203 @@
+:root {
+
+    /* Google Font */
+    --font-Lato: "Lato", sans-serif;
+
+    /* Font Size */
+    font-size: 16px;
+    --font-12: 12px;
+    --font-14: 14px;
+
+    /* Font Weight */
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+
+    /* Color */
+    --color-white: #ffffff;
+    --color-black: #432E54;
+    --color-light: #f8f8f8;
+    --color-green: #72BF78;
+    --color-deepGreen: #198754;
+
+    /* Hover Color */
+    --hover-color: #f6b944;
+
+}
+
+
+
+/* Menu Part Start */
+.menuActive{
+    padding: 8px 10px !important;
+    background-color: var(--color-deepGreen);
+    color: var(--color-white) !important;
+    border-radius: 5px;
+}
+/* Menu Part End */
+
+/* Admin Sidebar Part Start */
+
+.accordion-button::after {
+    font-size: 12px; /* Reduce size */
+    transform: scale(0.8); /* Optional: Scale the icon smaller */
+}
+
+.sidebar-item {
+    position: relative;
+    padding-left: 15px;
+    transition: all 0.3s ease-in-out;
+    font-size: var(--font-14);
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-item.adminActive {
+    color: var(--color-deepGreen) !important;
+    font-weight: var(--font-weight-bold);
+}
+
+.sidebar-item.adminActive::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-deepGreen);
+    border-radius: 2px;
+}
+
+.adminPending{
+    color: var(--color-black);
+}
+
+
+.adminSidebar {
+    height: 100vh;
+}
+
+.adminSidebar .accordion-item ul a {
+    color: var(--color-black);
+    text-decoration: none !important;
+}
+
+
+.offcanvas-sidebar span{
+    cursor: pointer;
+}
+/* Admin Sidebar Part End */
+
+/* User Sidebar Part Start */
+.userActive{
+    padding: 8px 10px !important;
+    background-color: var(--color-deepGreen) !important;
+    border-radius: 5px !important;
+    color: var(--color-white) !important;
+}
+
+.userPending{
+    color: var(--color-black) !important;
+}
+/* User Sidebar Part End */
+
+
+
+/* Responsive Design Part */
+@media (max-width: 1199.98px){
+    /* Admin Sidebar Part Start */
+    .sidebarBox .box1{
+        width: 25% !important;
+    }
+
+    .sidebarBox .box2{
+        width: 75% !important;
+    }
+    /* Admin Sidebar Part End */
+}
+@media (max-width: 991.98px) {
+    /* Admin Sidebar Part Start */
+    .sidebarBox .box1{
+        width: 25% !important;
+    }
+
+    .sidebarBox .box2{
+        width: 75% !important;
+    }
+
+    .sidebar-item {
+        font-size: var(--font-12); /* Reduce font size */
+        padding-left: 12px;
+    }
+    /* Admin Sidebar Part End */
+}
+
+@media (max-width: 767.98px){
+    /* Admin Sidebar Part Start */
+    .sidebarBox .box1{
+        width: 30% !important;
+    }
+
+    .sidebarBox .box2{
+        width: 70% !important;
+    }
+
+    .sidebar-item {
+        font-size: 12px;
+        padding-left: 10px;
+    }
+    /* Admin Sidebar Part End */
+
+}
+
+@media (max-width: 575.98px){
+    /* Admin Sidebar Part Start */
+    .sidebarBox .box1{
+        width: 40% !important;
+    }
+
+    .sidebarBox .box2{
+        width: 60% !important;
+    }
+
+    .sidebar-item {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .offcanvas-sidebar span{
+        cursor: pointer;
+    }
+    /* Admin Sidebar Part End */
+
+}
+
+@media (max-width: 375.98px){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

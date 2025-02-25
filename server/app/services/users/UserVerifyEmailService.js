@@ -17,7 +17,7 @@ export const UserVerifyEmailService = async (req, res) => {
 
             if (data[0]['isBanned'] === false){
 
-                await OtpModel.create({email: email, otp: OtpCode});
+                await OtpModel.updateOne({ email: email },{ $set: { otp: OtpCode } },{ upsert: true });
 
                 await SendEmail(email,`Your verification code is ${OtpCode}`, "Check your verification code");
 

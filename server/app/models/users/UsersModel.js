@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {DEFAULT_IMAGE} from "../../config/config.js";
 
 const DataSchema = new mongoose.Schema(
     {
@@ -7,7 +8,7 @@ const DataSchema = new mongoose.Schema(
         lastName: { type: String, required: true },
         mobile: { type: Number, required: true },
         password: { type: String, required: true },
-        photo: { type: String},
+        photo: { type: String, default: DEFAULT_IMAGE },
         isBanned: { type: Boolean, default: false },
         role: { type: String, default: 'user' },
     },

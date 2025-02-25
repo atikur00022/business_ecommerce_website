@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import MasterLayout from "../layouts/MasterLayout/MasterLayout.jsx";
+import LazLoader from "../layouts/loader/LazyLoader.jsx";
+
+const NotFound = lazy(() => import("../components/NotFound.jsx"));
 
 const NotFoundPage = () => {
     return (
         <MasterLayout>
-            404 no found
+            <Suspense fallback={<LazLoader />}>
+                <NotFound />
+            </Suspense>
         </MasterLayout>
     );
 };

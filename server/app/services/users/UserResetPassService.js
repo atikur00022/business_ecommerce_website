@@ -5,8 +5,8 @@ import bcrypt from "bcrypt";
 export const UserResetPassService = async (req, res) => {
     try{
 
-        const { email, newPassword, otp } = req.body;
-        const EncryptedPassword = await bcrypt.hash(newPassword, 10);
+        const { email, password, otp } = req.body;
+        const EncryptedPassword = await bcrypt.hash(password, 10);
         const statusUpdate = 1;
 
         const otpUserCount = await OtpModel.aggregate([

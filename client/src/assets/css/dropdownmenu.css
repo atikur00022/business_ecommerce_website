@@ -1,0 +1,13 @@
+.profile .dropdown-toggle{
+    cursor: pointer;
+}
+
+.profile img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.profile .dropdown-menu{
+    width: 300px;
+}
