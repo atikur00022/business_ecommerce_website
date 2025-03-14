@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import logo from "../../assets/images/plainb-logo.svg";
 import OffcanvasSidebar from "../OffcanvasSidebar.jsx";
-import SuperAdminSideBar from "./SuperAdminSideBar.jsx";
 import {LuUserRound} from "react-icons/lu";
 import {AiOutlineLogout} from "react-icons/ai";
 import {LogoutRequest} from "../../ApiRequest/Users/UsersApiRequest.js";
+import {getUserDetails} from "../../utility/SessionHelper.js";
 
 const SuperAdminDashboardHeader = () => {
 
@@ -24,6 +24,12 @@ const SuperAdminDashboardHeader = () => {
 
     const handleLogout = async () => {
         await LogoutRequest();
+    }
+
+    const userDetails = getUserDetails();
+
+    if(userDetails === null){
+        return null;
     }
 
     return (
@@ -45,19 +51,19 @@ const SuperAdminDashboardHeader = () => {
                                  aria-expanded="false">
                                 <img
                                     alt="profile-image"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+                                    src={userDetails["photo"]}/>
                             </div>
                             <ul className="dropdown-menu dropdown-menu-light shadow mt-1 pb-3">
                                 <div className="text-center mt-3">
                                     <img
                                         alt="profile-image"
-                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
-                                        <h5 className="mt-2">Jhon Doe</h5>
+                                        src={userDetails["photo"]}/>
+                                        <h5 className="mt-2">{`${userDetails["firstName"]} ${userDetails["lastName"]}`}</h5>
                                 </div>
                                 <hr/>
                                 <div className="d-flex align-items-center mx-3 mt-2">
                                     <LuUserRound/>
-                                    <li><Link to='/profile' className="dropdown-item">Profile</Link></li>
+                                    <li><Link to='/superadminprofile' className="dropdown-item">Profile</Link></li>
                                 </div>
                                 <div className="d-flex align-items-center mx-3 mt-2">
                                     <AiOutlineLogout/>

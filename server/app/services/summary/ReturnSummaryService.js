@@ -7,7 +7,7 @@ export const ReturnSummaryService = async (Request) => {
         const email = Request.headers['email'];
 
         let data = await ReturnsModel.aggregate([
-            { $match: { email: email } },
+            { $match: {  } },
             {
                 $facet: {
                     Total: [{

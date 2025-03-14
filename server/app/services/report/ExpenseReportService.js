@@ -9,7 +9,7 @@ export const ExpenseReportService = async (Request) => {
         const toDate = Request.body['toDate'];
 
         let data = await ExpensesModel.aggregate([
-            { $match: { email: email, createdAt: {$gte: new Date(formDate), $lte: new Date(toDate) } } },
+            { $match: { createdAt: {$gte: new Date(formDate), $lte: new Date(toDate) } } },
             {
                 $facet: {
                     Total: [{
@@ -22,7 +22,7 @@ export const ExpenseReportService = async (Request) => {
             }
         ]);
 
-        return { status: "success", message: "Expense report  successfully!", data: data };
+        return { status: "success", message: "Expense report successful!", data: data };
 
     }catch (e) {
         return { status: "fail", data: e.toString() };

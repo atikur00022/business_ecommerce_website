@@ -9,6 +9,7 @@ import {ObjectId} from "mongodb";
 import {CheckAssociateService} from "../../services/common/CheckAssociateService.js";
 import {DeleteService} from "../../services/common/DeleteService.js";
 import {DetailsByIdService} from "../../services/common/DetailsByIdService.js";
+import {DropdownService} from "../../services/common/DropDownService.js";
 
 // Create
 export const CreateProduct = async (req, res) => {
@@ -41,18 +42,17 @@ export const ProductList = async (req, res) => {
 export const DeleteProduct = async (req, res) => {
 
     const id = new ObjectId(req.params['id']);
-    console.log("product controller id", id)
 
     const checkReturnAssociate = await CheckAssociateService({productId: id}, ReturnsProductModel);
     const checkPurchaseAssociate = await CheckAssociateService({productId: id}, PurchasesProductModel);
     const checkSalesAssociate = await CheckAssociateService({productId: id}, SalesProductModel);
 
     if(checkReturnAssociate){
-        res.status(200).json({status: "associate", data: "Associate with Return!"});
+        res.status(200).json({status: "associate", message: "Associate with Return!"});
     }else if(checkPurchaseAssociate){
-        res.status(200).json({status: "associate", data: "Associate with Purchase!"});
+        res.status(200).json({status: "associate", message: "Associate with Purchase!"});
     }else if(checkSalesAssociate){
-        res.status(200).json({status: "associate", data: "Associate with Sale!"});
+        res.status(200).json({status: "associate", message: "Associate with Sale!"});
     }else{
         const result = await DeleteService(req, DataModel);
         res.json(result);
@@ -62,5 +62,11 @@ export const DeleteProduct = async (req, res) => {
 // Details
 export const ProductDetails = async (req, res) => {
     const result = await DetailsByIdService(req, DataModel);
+    res.json(result);
+}
+
+// DropDown
+export const ProductDropDown = async (req, res) => {
+    const result = await DropdownService(req, DataModel, {_id: 1, name: 1});
     res.json(result);
 }

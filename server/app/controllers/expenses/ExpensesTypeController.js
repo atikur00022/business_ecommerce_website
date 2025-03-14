@@ -1,9 +1,13 @@
 import DataModel from "../../models/expenses/ExpensesTypeModel.js";
+import ExpensesModel from "../../models/expenses/ExpensesModel.js";
 import {UpdateService} from "../../services/common/UpdateService.js";
 import {ListService} from "../../services/common/ListService.js";
 import {DropdownService} from "../../services/common/DropDownService.js";
 import {CreateWithUserService} from "../../services/common/CreateWithUserService.js";
 import {DetailsByIdService} from "../../services/common/DetailsByIdService.js";
+import {ObjectId} from "mongodb";
+import {CheckAssociateService} from "../../services/common/CheckAssociateService.js";
+import {DeleteService} from "../../services/common/DeleteService.js";
 
 // Create
 export const CreateExpenseType = async (req, res) => {
@@ -35,4 +39,19 @@ export const ExpenseTypeDropDown = async (req, res) => {
 export const ExpenseTypeDetails = async (req, res) => {
     const result = await DetailsByIdService(req, DataModel);
     res.json(result);
+}
+
+// Delete
+export const ExpenseTypeDelete = async (req, res) => {
+
+    const id = new ObjectId(req.params['id']);
+
+    let checkAssociate = await CheckAssociateService({typeID: id}, ExpensesModel);
+
+    if(checkAssociate){
+        res.status(200).json({status: "associate", message: "Can't be deleted! Associate with expense!"});
+    }else{
+        const result = await DeleteService(req, DataModel);
+        res.json(result);
+    }
 }

@@ -66,7 +66,7 @@ const VerifyEmail = () => {
                 ) : (
                     <section className="login py-5">
                         <div className="container">
-                            <div className="card p-4">
+                            <div className="card p-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center fs-2">Enter Your Email Address.</h5>
                                     <p className="card-text text-center">Reset Password Process.</p>

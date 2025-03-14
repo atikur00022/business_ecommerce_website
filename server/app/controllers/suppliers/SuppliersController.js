@@ -39,12 +39,11 @@ export const SupplierDropDown = async (req, res) => {
 export const DeleteSupplier = async (req, res) => {
 
     const id = new ObjectId(req.params['id']);
-    console.log("brand controller id", id)
 
     let checkAssociate = await CheckAssociateService({brandId: id}, PurchasesModel);
 
     if(checkAssociate){
-        res.status(200).json({status: "associate", data: "Associate with purchase!"});
+        res.status(200).json({status: "associate", message: "Can't be deleted! Associate with purchase!"});
     }else{
         const result = await DeleteService(req, DataModel);
         res.json(result);

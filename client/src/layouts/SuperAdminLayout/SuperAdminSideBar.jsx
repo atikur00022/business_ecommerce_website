@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {NavLink, useLocation} from "react-router-dom";
 import { RiDashboardFill } from "react-icons/ri";
-import { BsCircle, BsPeople } from "react-icons/bs";
+import {BsBagX, BsCircle, BsGraphUpArrow, BsPeople, BsTruck} from "react-icons/bs";
 import {IoHomeOutline} from "react-icons/io5";
+import {LiaEditSolid} from "react-icons/lia";
+import {AiOutlineProduct, AiOutlineUnorderedList} from "react-icons/ai";
+import {GiBeachBag} from "react-icons/gi";
+import {TiShoppingCart} from "react-icons/ti";
+import {MdOutlineAccountBalance} from "react-icons/md";
 
 const SuperAdminSideBar = () => {
+    const location = useLocation();
     const [activeIndex, setActiveIndex] = useState(null);
 
     const sideBarItems = [
@@ -28,16 +34,184 @@ const SuperAdminSideBar = () => {
                 {
                     title: "New Customer",
                     icon: <BsCircle size={16} className="sidebar-icon" />,
-                    url: "/customercreateupdate",
+                    url: "/superadmincustomercreateupdate",
                 },
                 {
                     title: "Customer List",
-                    icon: <BsCircle size={16} className="sidebar-icon" />,
-                    url: "/customerlist",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadmincustomerlist",
                 }
             ]
-        }
+        },
+        {
+            title: "Suppliers",
+            icon: <BsTruck size={20} className="sidebar-icon" />,
+            url: "/supplier",
+            subMenu: [
+                {
+                    title: "New Supplier",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminsuppliercreateupdate",
+                },
+                {
+                    title: "Supplier List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminsupplierlist",
+                }
+            ]
+        },
+        {
+            title: "Expense",
+            icon: <MdOutlineAccountBalance size={20} className="sidebar-icon" />,
+            url: "/expense",
+            subMenu: [
+                {
+                    title: "New Expense Type",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminexpensetypecreateupdate",
+                },
+                {
+                    title: "Expense Type List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminexpensetypelist",
+                },
+                {
+                    title: "New Expense",
+                    icon: <LiaEditSolid size={16} className="sidebar-icon" />,
+                    url: "/superadminexpensecreateupdate",
+                },
+                {
+                    title: "Expense List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminexpenselist",
+                }
+            ]
+        },
+        {
+            title: "Product",
+            icon: <AiOutlineProduct size={20} className="sidebar-icon" />,
+            url: "/product",
+            subMenu: [
+                {
+                    title: "New Brand",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminbrandcreateupdate",
+                },
+                {
+                    title: "Brand List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminbrandlist",
+                },
+                {
+                    title: "New Category",
+                    icon: <LiaEditSolid size={16} className="sidebar-icon" />,
+                    url: "/superadmincategorycreateupdate",
+                },
+                {
+                    title: "Category List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadmincategorylist",
+                },
+                {
+                    title: "New Product",
+                    icon: <LiaEditSolid size={16} className="sidebar-icon" />,
+                    url: "/superadminproductcreateupdate",
+                },
+                {
+                    title: "Product List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminproductlist",
+                }
+            ]
+        },
+        {
+            title: "Purchase",
+            icon: <GiBeachBag size={20} className="sidebar-icon" />,
+            url: "/purchase",
+            subMenu: [
+                {
+                    title: "New Purchase",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminpurchasecreateupdate",
+                },
+                {
+                    title: "Purchase List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminpurchaselist",
+                }
+            ]
+        },
+        {
+            title: "Sale",
+            icon: <TiShoppingCart size={20} className="sidebar-icon" />,
+            url: "/sale",
+            subMenu: [
+                {
+                    title: "New Sale",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminsalecreateupdate",
+                },
+                {
+                    title: "Sale List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminsalelist",
+                }
+            ]
+        },
+        {
+            title: "Return",
+            icon: <BsBagX size={20} className="sidebar-icon" />,
+            url: "/return",
+            subMenu: [
+                {
+                    title: "New Return",
+                    icon: <BsCircle size={16} className="sidebar-icon" />,
+                    url: "/superadminreturncreateupdate",
+                },
+                {
+                    title: "Return List",
+                    icon: <AiOutlineUnorderedList size={16} className="sidebar-icon" />,
+                    url: "/superadminreturnlist",
+                }
+            ]
+        },
+        {
+            title: "Report",
+            icon: <BsGraphUpArrow size={20} className="sidebar-icon" />,
+            url: "/report",
+            subMenu: [
+                {
+                    title: "Sale Report",
+                    icon: <TiShoppingCart size={16} className="sidebar-icon" />,
+                    url: "/superadminsalereport",
+                },
+                {
+                    title: "Return Report",
+                    icon: <BsBagX size={16} className="sidebar-icon" />,
+                    url: "/superadminreturnreport",
+                },
+                {
+                    title: "Purchase Report",
+                    icon: <GiBeachBag size={16} className="sidebar-icon" />,
+                    url: "/superadminrpurchasereport",
+                },
+                {
+                    title: "Expense Report",
+                    icon: <MdOutlineAccountBalance size={16} className="sidebar-icon" />,
+                    url: "/superadminrexpensereport",
+                }
+            ]
+        },
     ];
+
+    // Function to check if the current route is in a submenu
+    useEffect(() => {
+        sideBarItems.forEach((item, index) => {
+            if (item.subMenu.some(sub => sub.url === location.pathname)) {
+                setActiveIndex(index);
+            }
+        });
+    }, [location.pathname]);
 
     const toggleAccordion = (index) => {
         setActiveIndex(activeIndex === index ? null : index);

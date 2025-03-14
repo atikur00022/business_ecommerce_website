@@ -49,7 +49,7 @@ export const ResetPassword = async (req, res) => {
     res.json(result);
 }
 
-// Profile Update
+// SuperAdminProfile Update
 export const ProfileUpdate = async (req, res) => {
     const result = await UserUpdateService(req, res);
     res.json(result);

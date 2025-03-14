@@ -10,4 +10,8 @@
 
 .profile .dropdown-menu{
     width: 300px;
+    z-index: 100000 !important;
 }
+
+
+

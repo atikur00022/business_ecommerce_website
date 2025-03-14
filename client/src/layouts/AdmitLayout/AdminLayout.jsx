@@ -28,7 +28,7 @@ const AdminLayout = (props) => {
                         </div>
                     )}
                     <div className={`box2 ${isMobile ? 'col-12' : 'col-lg-10'}`}>
-                        <div className="container w-100">
+                        <div className="container-fluid w-100">
                             {props.children}
                         </div>
                     </div>

@@ -6,7 +6,7 @@ const DataSchema = new mongoose.Schema(
         email: { type: String, unique: true, required: true, lowercase: true, trim: true },
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
-        mobile: { type: Number, required: true },
+        mobile: { type: String, required: true },
         password: { type: String, required: true },
         photo: { type: String, default: DEFAULT_IMAGE },
         isBanned: { type: Boolean, default: false },

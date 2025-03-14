@@ -39,12 +39,11 @@ export const CategoryDropDown = async (req, res) => {
 export const DeleteCategory = async (req, res) => {
 
     const id = new ObjectId(req.params['id']);
-    console.log("category controller id", id)
 
     let checkAssociate = await CheckAssociateService({categoryId: id}, ProductsModel);
 
     if(checkAssociate){
-        res.status(200).json({status: "associate", data: "Associate with product!"});
+        res.status(200).json({status: "associate", message: "Can't be deleted! Associate with product!"});
     }else{
         const result = await DeleteService(req, DataModel);
         res.json(result);

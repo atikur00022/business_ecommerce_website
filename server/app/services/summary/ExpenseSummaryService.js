@@ -7,7 +7,7 @@ export const ExpenseSummaryService = async (Request) => {
         const email = Request.headers['email'];
 
         let data = await ExpensesModel.aggregate([
-            { $match: { email: email } },
+            { $match: {  } },
             {
                 $facet: {
                     Total: [{

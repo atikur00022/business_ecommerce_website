@@ -7,7 +7,7 @@ export const SalesSummaryService = async (Request) => {
         const email = Request.headers['email'];
 
         let data = await SalesModel.aggregate([
-            { $match: { email: email } },
+            { $match: { } },
             {
                 $facet: {
                     Total: [{

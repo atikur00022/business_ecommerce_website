@@ -1,8 +1,8 @@
 import store from "../../redux/store/Store.js";
 import axios from "axios";
 import {removeSession, setLoginStatus, setUserDetails} from "../../utility/SessionHelper.js";
-import {setRole} from "../../redux/stateSlice/userRoleSlice.js";
 import {BASE_URL} from "../../utility/Config.js";
+import {setProfile} from "../../redux/stateSlice/profileSlice.js";
 
 
 // Registration
@@ -50,8 +50,6 @@ export const LoginRequest = async (postBody) => {
                 // setToken(res.data['data']['token']);
 
                 setLoginStatus(true);
-                store.dispatch(setRole(true))
-
                 setUserDetails(res.data['data']);
                 return { status: 'success', message: res.data['message'] };
             }
@@ -182,7 +180,67 @@ export const ResetPasswordRequest = async (postBody) => {
     }
 }
 
+// Profile Details
+export const ProfileDetailsRequest = async () => {
 
+    const url = `${BASE_URL}/Details`;
+
+    try {
+        let res = await axios.get(url, {
+            withCredentials: true,
+        });
+
+        console.log("user data check", res.data['data'][0]);
+
+        if (res.status === 200) {
+
+            if (res.data['status'] === 'fail') {
+                return { status: 'fail', message: res.data['message'] };
+            } else {
+                store.dispatch(setProfile(res.data['data'][0]));
+                return { status: 'success', message: res.data['message'] };
+            }
+
+        } else {
+
+            return { status: 'fail', message: "Unexpected HTTP response!" };
+        }
+    } catch (e) {
+
+        return { status: 'error', message: e.toString() };
+    }
+}
+
+// Update Profile Details
+export const UpdateProfileDetailsRequest = async (postBody) => {
+
+    const url = `${BASE_URL}/ProfileUpdate`;
+
+    try {
+        let res = await axios.post(url, postBody,{
+            withCredentials: true,
+        })
+
+        console.log("super admin data check", postBody);
+
+        if (res.status === 200) {
+
+            if (res.data['status'] === 'fail') {
+                return { status: 'fail', message: res.data['message'] };
+            } else {
+                setUserDetails(postBody);
+                return { status: 'success', message: res.data['message'] };
+            }
+
+        } else {
+
+            return { status: 'fail', message: "Unexpected HTTP response!" };
+        }
+    } catch (e) {
+
+        return { status: 'error', message: e.toString() };
+    }
+}
 
 
 

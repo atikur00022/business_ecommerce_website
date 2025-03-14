@@ -7,7 +7,7 @@ export const PurchaseSummaryService = async (Request) => {
         const email = Request.headers['email'];
 
         let data = await PurchasesModel.aggregate([
-            { $match: { email: email } },
+            { $match: { } },
             {
                 $facet: {
                     Total: [{

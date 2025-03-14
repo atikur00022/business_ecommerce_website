@@ -4,6 +4,7 @@ import App from './App.jsx'
 import '../src/assets/css/fullScreenLoader.css';
 import '../src/assets/css/dropdownmenu.css';
 import '../src/assets/css/sidebar.css';
+import '../src/assets/css/extraSmallChanges.css';
 import '../src/assets/css/style.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';

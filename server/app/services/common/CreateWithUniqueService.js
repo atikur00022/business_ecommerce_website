@@ -16,7 +16,7 @@ export const CreateWithUniqueService = async (Request, DataModel) => {
             }else {
                 const data = await DataModel.create(PostBody);
 
-                return { status: "success", data: data };
+                return { status: "success", message: "Request Successful!", data: data };
             }
 
 

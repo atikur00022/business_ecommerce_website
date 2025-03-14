@@ -8,7 +8,7 @@ export const UserDetailsService = async (req, res) => {
 
         const data = await UsersModel.aggregate([
             { $match: { _id: userID } },
-            { $project: { _id:0, password:0, isBanned:0, role:0, createdAt:0, updatedAt:0 } }
+            { $project: { _id:0, isBanned:0, password: 0, role:0, createdAt:0, updatedAt:0 } }
         ]);
 
         return { status: "success", message: "User details have been successfully", data: data };

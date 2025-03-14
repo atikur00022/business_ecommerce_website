@@ -3,6 +3,7 @@
 
     export const IMAGE_PATH = "http://localhost:8000"
     export  const DEFAULT_IMAGE =`${IMAGE_PATH}/uploads/avatar.png`
+    export  const ALL_DEFAULT_IMAGE =`${IMAGE_PATH}/uploads/noimage.png`
 
 
     export const DATABASE = 'mongodb+srv://atikur:IlR19F6B1ULeiwL6@cluster0.skem4.mongodb.net/businness?retryWrites=true&w=majority&appName=Cluster0'

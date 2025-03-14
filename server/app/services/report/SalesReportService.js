@@ -9,7 +9,7 @@ export const SaleReportService = async (Request) => {
         const toDate = Request.body['toDate'];
 
         let data = await SalesProductModel.aggregate([
-            { $match: { email: email, createdAt: {$gte: new Date(formDate), $lte: new Date(toDate) } } },
+            { $match: { createdAt: {$gte: new Date(formDate), $lte: new Date(toDate) } } },
             {
                 $facet: {
                     Total: [{

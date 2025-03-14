@@ -1,80 +1,96 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {RiDashboardFill} from "react-icons/ri";
+import {IoHomeOutline} from "react-icons/io5";
+import {BsCircle, BsPeople} from "react-icons/bs";
 
 const UserSidebar = () => {
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const sideBarItems = [
+        {
+            title: "Dashboard",
+            icon: <RiDashboardFill size={20} className="sidebar-icon" />,
+            url: "/userdashboard",
+            subMenu: [] // No submenu
+        },
+        {
+            title: "Go To Home Page",
+            icon: <IoHomeOutline size={20} className="sidebar-icon" />,
+            url: "/",
+            subMenu: [] // No submenu
+        },
+
+    ];
+
+    const toggleAccordion = (index) => {
+        setActiveIndex(activeIndex === index ? null : index);
+    };
+
     return (
-        <section className="userSidebar py-3 bg-light vh-100">
+        <section className="adminSidebar py-3 shadow">
             <div className="container">
-                {/* Dashboard Summary */}
-                <div className="mb-1">
-                    <NavLink to="/userdashboard"
-                             className={({isActive}) => `list-group-item ${isActive ? 'userActive' : 'userPending'}`}>
-                        <span>Dashboard Summary </span>
-                    </NavLink>
+                <div className="accordion border-0" id="sidebarAccordion">
+                    {sideBarItems.map((item, index) => (
+                        <div className="accordion-item border-0 bg-transparent mb-2" key={index}>
+                            <h2 className="accordion-header">
+                                {item.subMenu.length > 0 ? (
+                                    <button
+                                        className={`accordion-button d-flex align-items-center border-0 bg-transparent shadow-none ${activeIndex === index ? "" : "collapsed"}`}
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target={`#collapse${index}`}
+                                        aria-expanded={activeIndex === index}
+                                        aria-controls={`collapse${index}`}
+                                        onClick={() => toggleAccordion(index)}
+                                        style={{gap: "10px", padding: "12px 15px"}}
+                                    >
+                                        {item.icon}
+                                        <span className="sidebar-text">{item.title}</span>
+                                        {/* If using a custom indicator icon */}
+                                        <i className={`accordion-icon ${activeIndex === index ? 'open' : ''}`}
+                                           style={{fontSize: '12px'}}></i>
+                                    </button>
+
+                                ) : (
+                                    <NavLink
+                                        to={item.url}
+                                        className={({isActive}) =>
+                                            `btn text-decoration-none w-100 text-start d-flex align-items-center border-0 bg-transparent no-border sidebar-item ${isActive ? 'adminActive' : 'adminPending'}`
+                                        }
+                                        style={{gap: "10px", padding: "12px 15px"}}
+                                    >
+                                        {item.icon}
+                                        <span className="sidebar-text">{item.title}</span>
+                                    </NavLink>
+                                )}
+                            </h2>
+                            {item.subMenu.length > 0 && (
+                                <div
+                                    id={`collapse${index}`}
+                                    className={`accordion-collapse collapse ${activeIndex === index ? "show" : ""}`}
+                                    data-bs-parent="#sidebarAccordion"
+                                >
+                                    <div className="accordion-body border-0 bg-transparent ps-4">
+                                        {item.subMenu.map((subItem, subIndex) => (
+                                            <NavLink
+                                                key={subIndex}
+                                                to={subItem.url}
+                                                className={({isActive}) =>
+                                                    `d-flex align-items-center text-decoration-none py-2 ps-3 sidebar-item ${isActive ? 'adminActive' : 'adminPending'}`
+                                                }
+                                                style={{gap: "10px", padding: "8px 15px"}}
+                                            >
+                                                {subItem.icon}
+                                                <span className="sidebar-text">{subItem.title}</span>
+                                            </NavLink>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
                 </div>
-
-                {/*<div className="accordion" id="accordionExample">*/}
-                {/*    /!* Header Accordion *!/*/}
-                {/*    <div className="accordion-item">*/}
-                {/*        <h2 className="accordion-header">*/}
-                {/*            <button*/}
-                {/*                className={`accordion-button ${activeAccordion === "collapseOne" ? "" : "collapsed"}`}*/}
-                {/*                type="button"*/}
-                {/*                onClick={() => handleAccordionClick("collapseOne")}*/}
-                {/*            >*/}
-                {/*                Header*/}
-                {/*            </button>*/}
-                {/*        </h2>*/}
-                {/*        <div*/}
-                {/*            id="collapseOne"*/}
-                {/*            className={`accordion-collapse collapse ${activeAccordion === "collapseOne" ? "show" : ""}`}*/}
-                {/*        >*/}
-                {/*            <div className="accordion-body">*/}
-                {/*                <TopNavBarLink/>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-
-                {/*    /!* All Users Accordion *!/*/}
-                {/*    <div className="accordion-item">*/}
-                {/*        <h2 className="accordion-header">*/}
-                {/*            <button*/}
-                {/*                className={`accordion-button ${activeAccordion === "collapseTwo" ? "" : "collapsed"}`}*/}
-                {/*                type="button"*/}
-                {/*                onClick={() => handleAccordionClick("collapseTwo")}*/}
-                {/*            >*/}
-                {/*                All Users*/}
-                {/*            </button>*/}
-                {/*        </h2>*/}
-                {/*        <div*/}
-                {/*            id="collapseTwo"*/}
-                {/*            className={`accordion-collapse collapse ${activeAccordion === "collapseTwo" ? "show" : ""}`}*/}
-                {/*        >*/}
-                {/*            <div className="accordion-body">*/}
-                {/*                <AllUsersLink/>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-
-                {/*    /!* Additional Accordion Items *!/*/}
-                {/*    <div className="accordion-item">*/}
-                {/*        <h2 className="accordion-header">*/}
-                {/*            <button*/}
-                {/*                className={`accordion-button ${activeAccordion === "collapseThree" ? "" : "collapsed"}`}*/}
-                {/*                type="button"*/}
-                {/*                onClick={() => handleAccordionClick("collapseThree")}*/}
-                {/*            >*/}
-                {/*                Accordion Item #3*/}
-                {/*            </button>*/}
-                {/*        </h2>*/}
-                {/*        <div*/}
-                {/*            id="collapseThree"*/}
-                {/*            className={`accordion-collapse collapse ${activeAccordion === "collapseThree" ? "show" : ""}`}*/}
-                {/*        >*/}
-                {/*            <div className="accordion-body">This is item 3</div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
         </section>
     );

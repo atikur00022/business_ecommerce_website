@@ -37,8 +37,6 @@ const Login = () => {
 
                 const res = await LoginRequest(formValue);
 
-                console.log('login response', res)
-
                 setFormValue(initialFormValue);
 
                 if (res.status === 'fail') {
@@ -46,8 +44,7 @@ const Login = () => {
                     ValidationHelper.ErrorToast(res.message);
                 } else if (res.status === 'success') {
                     ValidationHelper.SuccessToast(res.message);
-                        const user = await getUserDetails();
-                    console.log("user", user['role']);
+                    const user = await getUserDetails();
 
                     setTimeout(() => {
                         if (user["role"] === "superadmin") {
@@ -72,7 +69,7 @@ const Login = () => {
                 }
             } catch (e) {
                 setLoading(false);
-                ValidationHelper.ErrorToast("Something went wrong!");
+                ValidationHelper.ErrorToast("Something went wrong from this portion!");
             }
         }
     }
@@ -85,7 +82,7 @@ const Login = () => {
                 ) : (
                     <section className="login py-5">
                         <div className="container">
-                            <div className="card p-4">
+                            <div className="card p-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center fs-2">Login Account</h5>
                                     <p className="card-text text-center">Please login below account details</p>

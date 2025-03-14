@@ -76,7 +76,7 @@ const Registration = () => {
                 ) : (
                     <section className="registration py-5">
                         <div className="container">
-                            <div className="card p-4">
+                            <div className="card p-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center fs-2">Create Account</h5>
                                     <p className="card-text text-center">Please register below account details</p>

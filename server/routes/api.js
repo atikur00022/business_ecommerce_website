@@ -15,6 +15,7 @@ import * as SalesController from "../app/controllers/sales/SalesController.js";
 import * as ReturnController from "../app/controllers/return/ReturnController.js";
 import * as ReportController from "../app/controllers/report/ReportController.js";
 import * as SummaryController from "../app/controllers/summary/SummaryController.js";
+import {ProductDropDown} from "../app/controllers/products/ProductsController.js";
 
 
 // Users Route
@@ -65,6 +66,7 @@ router.post('/UpdateExpenseType/:id', AuthMiddleware , ExpensesTypeController.Up
 router.get('/ExpenseTypeList/:pageNo/:perPage/:searchKeyword', AuthMiddleware , ExpensesTypeController.ExpenseTypeList);
 router.get('/ExpenseTypeDropDown', AuthMiddleware , ExpensesTypeController.ExpenseTypeDropDown);
 router.get('/ExpenseTypeDetails/:id', AuthMiddleware , ExpensesTypeController.ExpenseTypeDetails);
+router.get('/ExpenseTypeDelete/:id', AuthMiddleware , ExpensesTypeController.ExpenseTypeDelete);
 
 // Expenses Route
 router.post('/CreateExpense', AuthMiddleware , ExpensesController.CreateExpense);
@@ -79,6 +81,7 @@ router.post('/CreateProduct', AuthMiddleware , ProductsController.CreateProduct)
 router.post('/UpdateProduct/:id', AuthMiddleware , ProductsController.UpdateProduct);
 router.get('/ProductList/:pageNo/:perPage/:searchKeyword', AuthMiddleware , ProductsController.ProductList);
 router.get('/DeleteProduct/:id', AuthMiddleware , ProductsController.DeleteProduct);
+router.get('/ProductDropDown', AuthMiddleware , ProductsController.ProductDropDown);
 router.get('/ProductDetails/:id', AuthMiddleware , ProductsController.ProductDetails);
 
 // Purchase Route
@@ -103,10 +106,10 @@ router.post('/PurchaseReport', AuthMiddleware , ReportController.PurchaseReport)
 router.post('/SaleReport', AuthMiddleware , ReportController.SaleReport);
 
 // Summary Route
-router.post('/ExpenseSummary', AuthMiddleware , SummaryController.ExpenseSummary);
-router.post('/ReturnSummary', AuthMiddleware , SummaryController.ReturnSummary);
-router.post('/PurchaseSummary', AuthMiddleware , SummaryController.PurchaseSummary);
-router.post('/SaleSummary', AuthMiddleware , SummaryController.SaleSummary);
+router.get('/ExpenseSummary', AuthMiddleware , SummaryController.ExpenseSummary);
+router.get('/ReturnSummary', AuthMiddleware , SummaryController.ReturnSummary);
+router.get('/PurchaseSummary', AuthMiddleware , SummaryController.PurchaseSummary);
+router.get('/SaleSummary', AuthMiddleware , SummaryController.SaleSummary);
 
 
 // Protected route - this requires authentication and will respond with user details if authenticated.

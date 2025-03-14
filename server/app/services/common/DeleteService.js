@@ -8,7 +8,7 @@ export const DeleteService = async (Request, DataModel) => {
 
         await DataModel.deleteOne({_id: id});
 
-        return { status: "success", message: "Deleted successfully!" };
+        return { status: "success", message: "Delete successful!" };
 
     }catch (e) {
         return { status: "fail", data: e.toString() };
